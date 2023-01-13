@@ -6,3 +6,11 @@ C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug
 C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug\TestTaskLaputskiTrafim.csproj.CoreCompileInputs.cache
 C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug\TestTaskLaputskiTrafim.exe
 C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug\TestTaskLaputskiTrafim.pdb
+C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\bin\Debug\TestTaskLaputskiTrafim.exe.config
+C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\bin\Debug\TestTaskLaputskiTrafim.exe
+C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\bin\Debug\TestTaskLaputskiTrafim.pdb
+C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug\TestTaskLaputskiTrafim.csproj.AssemblyReference.cache
+C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug\TestTaskLaputskiTrafim.csproj.SuggestedBindingRedirects.cache
+C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug\TestTaskLaputskiTrafim.csproj.CoreCompileInputs.cache
+C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug\TestTaskLaputskiTrafim.exe
+C:\Users\TROFFik\Desktop\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\TestTaskLaputskiTrafim\obj\Debug\TestTaskLaputskiTrafim.pdb

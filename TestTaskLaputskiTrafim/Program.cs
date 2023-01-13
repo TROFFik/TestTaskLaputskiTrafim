@@ -24,59 +24,47 @@ namespace TestTaskLaputskiTrafim
 
                 _key = Console.ReadKey();
 
-                switch (_key.Key)
+                if (_key.Key != ConsoleKey.Q && _car == null )
                 {
-                    case ConsoleKey.Q:
-                        _car = BuyNewCar(_car, _carShop);
+                    Console.WriteLine("Cначала купите машину!");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    switch (_key.Key)
+                    {
+                        case ConsoleKey.Q:
+                            _car = BuyNewCar(_carShop);
                             break;
 
-                    case ConsoleKey.W:
+                        case ConsoleKey.W:
 
-                        if (_car == null)
-                        {
-                            Console.WriteLine("Cначала купить машину!");
-                        }
-                        else
-                        {
                             Console.WriteLine("Здоровье автомобиля: " + _car.Health);
-                        }
-                        Console.ReadKey();
-                        break;
+                            Console.ReadKey();
+                            break;
 
-                    case ConsoleKey.E:
+                        case ConsoleKey.E:
 
-                        if (_car == null)
-                        {
-                            Console.WriteLine("Cначала купить машину!");
-                        }
-                        else
-                        {
                             _station.FixCar(_car);
                             Console.WriteLine("Здоровье автомобиля: " + _car.Health);
-                        }
-                        Console.ReadKey();
-                        break;
+                            Console.ReadKey();
+                            break;
 
-                    case ConsoleKey.R:
-                        if(_car == null)
-                        {
-                            Console.WriteLine("Cначала купить машину!");
-                        }
-                        else
-                        {
+                        case ConsoleKey.R:
+
                             Driving(_car);
-                        }
-                        Console.ReadKey();
-                        break;
+                            Console.ReadKey();
+                            break;
 
-                    default:
-                        break;
-                }
+                        default:
+                            break;
+                    }
+                }                
             }
             while (_key.Key != ConsoleKey.Escape); // по нажатию на Escape завершаем цикл 
         }
 
-        private static Car BuyNewCar(Car car, CarShop carShop) // на юнити можно было бы изменять _car напрямую
+        private static Car BuyNewCar(CarShop carShop)
         {
             Console.Clear();
             Console.WriteLine("Введите марку желаемого автомобиля");
@@ -138,150 +126,6 @@ namespace TestTaskLaputskiTrafim
                     Console.WriteLine("Такого варианта нету");
                     break;
             }
-        }
-    }
-
-    class CarShop
-    {
-        public Car GetCar(int carTypeID, string carBrend)
-        {
-            switch (carTypeID)
-            {
-                case 0:
-                    return new PassengerCar(carBrend, 5, 10, 1, 6);
-
-                case 1:
-                    return new SUV(carBrend, 10, 20, 3, 2);
-
-                case 2:
-                    return new Truck(carBrend, 3, 30, 2, 5);
-
-                default:
-                    Console.WriteLine("Такого варианта нету");
-                    Console.ReadKey();
-                    return null;
-            }
-        }
-    }
-
-    class ServiceStation
-    {
-        public void FixCar(Car car)
-        {
-            car.Health = 10;
-        }
-    }
-
-    public abstract class Car // создаем базовый класс машины с одинаковыми параметрами и методами для всех наследуемых машин 
-    {
-        protected Guid _licensePlate; // базовые параметры автомобиля
-        protected string _brand;
-        protected int _maxSpeed;
-        protected int _maxHealth;
-        protected int _armorСoefficient;
-        protected int _health;
-
-        public int Health // делаем читаемым и изменяемым (для ремонта) текущее состояние автомобиля 
-        {
-            get { return _health; }
-
-            set
-            {
-                _health += value; // чиним авто
-
-                _health = _health > _maxHealth ? _maxHealth : _health; //проверка выхода за пределы
-            }
-        }
-
-        public Car(string brand, int maxSpeed, int maxHealth, int armorСoefficient) // конструктор класса 
-        {
-            _licensePlate = Guid.NewGuid(); // создаем уникальный номер машины
-            _maxSpeed = maxSpeed;
-            _maxHealth = maxHealth;
-            _health = _maxHealth;
-            _armorСoefficient = armorСoefficient;
-            _brand = brand;
-
-            if (_brand == "Лада") // добавляем щепотку реализма
-            {
-                _maxHealth = 1;
-                _health = 0;
-                _armorСoefficient = 0;
-            }
-        }
-
-        public void Drive(int direction) // метод езды на автомобиле. direction по аналогии движения в юнити: т.е. вектор направоения движения 
-        {
-            if (_health > 0) // делаем проверку на состояние автомобиля (если убитый - не едет)
-            {
-                switch(direction)
-                {
-                    case 0:
-                        Console.WriteLine("Вы решили поехать прямо");
-                        break;
-                    case 1:
-                        Console.WriteLine("Вы решили поехать налево");
-                        break;
-                    case 2:
-                        Console.WriteLine("Вы решили поехать назад");
-                        break;
-                    case 3:
-                        Console.WriteLine("Вы решили сдать направо");
-                        break;
-                }
-                Console.WriteLine("Врум - Врум. Кчау");
-                Damage(); // наносим урон при движении
-            }
-            else
-            {
-                Console.WriteLine("Машина сломана");
-            }
-        }
-
-        private void Damage()
-        {
-            Random random = new Random(); // делаем экземпляр рандомайзера 
-
-            int damage = random.Next(_maxHealth) - _armorСoefficient; // расчитываем дамаг машины
-
-            damage = damage < 0 ? 0 : damage; // проверяем на то, чтобы дамаг не был отрицательным
-
-            _health -= damage;
-
-            _health = _health < 0 ? 0 : _health; // проверяем на то, чтобы здоровье не был отрицательным
-        }
-    }
-
-    class PassengerCar : Car
-    {
-        private int _seatsCount; //дополнительный параметр автомобиля в зависимости от типа авто
-        public PassengerCar(string brand, int maxSpeed, int maxHealth, int armorСoefficient, int seatsCount) : base(brand, maxSpeed, maxHealth, armorСoefficient)
-        {
-            _seatsCount = seatsCount;  
-        }
-    }
-
-    class SUV : Car
-    {
-        private int _wheelSize;
-        public SUV(string brand, int maxSpeed, int maxHealth, int armorСoefficient, int wheelSize) : base(brand, maxSpeed, maxHealth, armorСoefficient)
-        {
-            _wheelSize = wheelSize;
-
-            _armorСoefficient += _wheelSize; // меняем коэффециент в сооиветствии с новым параметром
-        }
-    }
-
-    class Truck : Car
-    {
-        private int _carryingCapacity;
-        public Truck(string brand, int maxSpeed, int maxHealth, int armorСoefficient, int carryingCapacity) : base(brand, maxSpeed, maxHealth, armorСoefficient)
-        {
-            _carryingCapacity = carryingCapacity;
-
-            _armorСoefficient -= carryingCapacity; // меняем коэффециент в сооиветствии с новым параметром
-
-            _armorСoefficient = _carryingCapacity >= _armorСoefficient ? 1 : _armorСoefficient - _carryingCapacity; // проверка на адекватность значений
         }
     }
 }
